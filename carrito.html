@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Carrito de Compras</title>
+
+</head>
+
+<body>
+
+
+    <section class="cart-section">
+        <h2>🛒 Carrito General</h2>
+
+        <a href="index.html"><button class="back-button" onclick="window.history.back()">← Volver</button></a>
+
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="cart-total">0.00</span></p>
+        <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+    </section>
+
+    <script>
+        function mostrarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const lista = document.getElementById('cart-items');
+            const total = document.getElementById('cart-total');
+            lista.innerHTML = '';
+            let suma = 0;
+
+            carrito.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.nombre} - $${item.precio.toFixed(2)}`;
+                lista.appendChild(li);
+                suma += item.precio;
+            });
+
+            total.textContent = suma.toFixed(2);
+        }
+
+        function vaciarCarrito() {
+            localStorage.removeItem('carrito');
+            mostrarCarrito();
+        }
+
+        // Mostrar al cargar
+        mostrarCarrito();
+    </script>
+
+
+</body>
+
+
+</html>

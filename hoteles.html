@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/image copy.png" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Reserva de Hoteles</title>
+
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html"><button class="back-button" onclick="window.history.back()">← Volver Atrás</button></a>
+        <h1>Reserva de Hoteles Exclusivos</h1>
+        <p>Encuentra tu estancia perfecta y agrégala a tu carrito de reservas.</p>
+    </header>
+
+    <main class="hotel-container" id="hotel-list">
+        <div class="hotel-card" data-id="1" data-name="Hotel Boutique La Escondida" data-price="150.00">
+            <img src="assets/img/hoteles/image copy 2.png" alt="Hotel Boutique La Escondida">
+            <div class="hotel-info">
+                <div>
+                    <h3>Hotel Boutique La Escondida</h3>
+                    <p>Un refugio de tranquilidad en el corazón de la ciudad. Ideal para una escapada romántica.</p>
+                    <p>Servicios: Wi-Fi, Desayuno, Spa, Piscina climatizada.</p>
+                </div>
+                <div class="hotel-bottom">
+                    <div class="hotel-price">$150.00 / Noche</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="hotel-card" data-id="2" data-name="Grand Hotel Vista Mar" data-price="250.00">
+            <img src="assets/img/hoteles/image copy 3.png" alt="Grand Hotel Vista Mar">
+            <div class="hotel-info">
+                <div>
+                    <h3>Grand Hotel Vista Mar</h3>
+                    <p>Disfruta de vistas espectaculares al océano y un servicio de lujo inigualable.</p>
+                    <p>Servicios: Frente a la playa, Restaurante gourmet, Gimnasio, Centro de negocios.</p>
+                </div>
+                <div class="hotel-bottom">
+                    <div class="hotel-price">$250.00 / Noche</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="hotel-card" data-id="3" data-name="Eco Lodge Aventura" data-price="100.00">
+            <img src="assets/img/hoteles/image copy 4.png" alt="Eco Lodge Aventura">
+            <div class="hotel-info">
+                <div>
+                    <h3>Eco Lodge Aventura</h3>
+                    <p>Para los amantes de la naturaleza y la aventura. Rodeado de bosques y senderos.</p>
+                    <p>Servicios: Senderismo, Observación de aves, Comida orgánica, Guías locales.</p>
+                </div>
+                <div class="hotel-bottom">
+                    <div class="hotel-price">$100.00 / Noche</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="hotel-card" data-id="4" data-name="Hotel Urbano Confort" data-price="120.00">
+            <img src="assets/img/hoteles/image copy.png" alt="Hotel Urbano Confort">
+            <div class="hotel-info">
+                <div>
+                    <h3>Hotel Urbano Confort</h3>
+                    <p>La opción perfecta para viajes de negocios o estancias cortas con todas las comodidades.</p>
+                    <p>Servicios: Centro de conferencias, Bar, Estacionamiento, Cerca del transporte público.</p>
+                </div>
+                <div class="hotel-bottom">
+                    <div class="hotel-price">$120.00 / Noche</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="hotel-card" data-id="5" data-name="Resort Familiar Sol y Arena" data-price="300.00">
+            <img src="assets/img/hoteles/image.png" alt="Resort Familiar Sol y Arena">
+            <div class="hotel-info">
+                <div>
+                    <h3>Resort Familiar Sol y Arena</h3>
+                    <p>Un paraíso para toda la familia con actividades y diversión para todas las edades.</p>
+                    <p>Servicios: Parque acuático, Club de niños, Animación, Variedad de restaurantes.</p>
+                </div>
+                <div class="hotel-bottom">
+                    <div class="hotel-price">$300.00 / Noche</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+  function agregarAlCarrito(nombre, precio) {
+    carrito.push({ nombre, precio });
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    alert(`${nombre} agregado al carrito.`);
+  }
+
+  // Si usás botones con clase .add-to-cart-btn
+  document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.car-card');
+      const nombre = card.getAttribute('data-name');
+      const precio = parseFloat(card.getAttribute('data-price'));
+      agregarAlCarrito(nombre, precio);
+    });
+  });
+</script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

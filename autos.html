@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/image copy.png" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Alquiler de Autos</title>
+
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html"><button class="back-button" onclick="window.history.back()">← Volver Atrás</button></a>
+        <h1>Alquiler de Autos</h1>
+        <p>Encuentra el auto perfecto para tu viaje y agrégalo a tu carrito de alquiler.</p>
+    </header>
+
+    <main class="car-container" id="car-list">
+        <div class="car-card" data-id="1" data-name="Compacto Económico" data-price="40.00">
+            <img src="assets/img/autos/image copy 4.png" alt="Compacto Económico">
+            <div class="car-info">
+                <div>
+                    <h3>Compacto Económico</h3>
+                    <p>Ideal para la ciudad, bajo consumo de combustible y fácil de estacionar.</p>
+                    <p>Características: 4 pasajeros, aire acondicionado, transmisión manual.</p>
+                </div>
+                <div class="car-bottom">
+                    <div class="car-price">$40.00 / Día</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="car-card" data-id="2" data-name="Sedán Familiar" data-price="60.00">
+            <img src="assets/img/autos/image copy 3.png" alt="Sedán Familiar">
+            <div class="car-info">
+                <div>
+                    <h3>Sedán Familiar</h3>
+                    <p>Espacioso y cómodo para viajes largos con toda la familia.</p>
+                    <p>Características: 5 pasajeros, amplio maletero, transmisión automática, GPS.</p>
+                </div>
+                <div class="car-bottom">
+                    <div class="car-price">$60.00 / Día</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="car-card" data-id="3" data-name="SUV Aventura 4x4" data-price="90.00">
+            <img src="assets/img/autos/image copy 2.png" alt="SUV Aventura 4x4">
+            <div class="car-info">
+                <div>
+                    <h3>SUV Aventura 4x4</h3>
+                    <p>Perfecto para explorar terrenos difíciles y disfrutar de la naturaleza.</p>
+                    <p>Características: 5-7 pasajeros, tracción 4x4, techo panorámico.</p>
+                </div>
+                <div class="car-bottom">
+                    <div class="car-price">$90.00 / Día</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="car-card" data-id="4" data-name="Deportivo Lujo" data-price="150.00">
+            <img src="assets/img/autos/image copy.png" alt="Deportivo Lujo">
+            <div class="car-info">
+                <div>
+                    <h3>Deportivo Lujo</h3>
+                    <p>Experimenta la emoción de la velocidad y el confort de alta gama.</p>
+                    <p>Características: 2 pasajeros, motor potente, asientos de cuero.</p>
+                </div>
+                <div class="car-bottom">
+                    <div class="car-price">$150.00 / Día</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="car-card" data-id="5" data-name="Furgoneta Carga" data-price="75.00">
+            <img src="assets/img/autos/image.png" alt="Furgoneta de Carga">
+            <div class="car-info">
+                <div>
+                    <h3>Furgoneta Carga</h3>
+                    <p>Ideal para mudanzas pequeñas o transportar equipos.</p>
+                    <p>Características: Gran capacidad de carga, diésel, fácil manejo.</p>
+                </div>
+                <div class="car-bottom">
+                    <div class="car-price">$75.00 / Día</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script>
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            alert(`${nombre} agregado al carrito.`);
+        }
+
+        // Si usás botones con clase .add-to-cart-btn
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.car-card');
+                const nombre = card.getAttribute('data-name');
+                const precio = parseFloat(card.getAttribute('data-price'));
+                agregarAlCarrito(nombre, precio);
+            });
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

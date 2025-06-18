@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/image copy.png" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Venta de Vuelos Turísticos</title>
+
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html"><button class="back-button" onclick="window.history.back()">← Volver Atrás</button></a>
+        <h1>Venta de Vuelos Turísticos</h1>
+        <p>Encuentra tu próximo destino y reserva tus vuelos fácilmente.</p>
+    </header>
+
+    <main class="flight-container" id="flight-list">
+        <div class="flight-card" data-id="1" data-name="Vuelo a Bariloche" data-price="250.00">
+            <img src="assets/img/viajes/image.png" alt="Vuelo a Bariloche">
+            <div class="flight-info">
+                <div>
+                    <h3>Bariloche - Ida y Vuelta</h3>
+                    <p>Disfruta de la Patagonia argentina: lagos, montañas y chocolate.</p>
+                    <p>Fechas: 15/07/2025 - 22/07/2025. Aerolínea: Aerolíneas Argentinas.</p>
+                </div>
+                <div class="flight-bottom">
+                    <div class="flight-price">$250.00</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flight-card" data-id="2" data-name="Vuelo a Cataratas del Iguazú" data-price="300.00">
+            <img src="assets/img/viajes/image copy.png" alt="Vuelo a Cataratas del Iguazú">
+            <div class="flight-info">
+                <div>
+                    <h3>Cataratas del Iguazú - Ida y Vuelta</h3>
+                    <p>Maravíllate con una de las siete maravillas naturales del mundo.</p>
+                    <p>Fechas: 01/08/2025 - 05/08/2025. Aerolínea: LATAM.</p>
+                </div>
+                <div class="flight-bottom">
+                    <div class="flight-price">$300.00</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flight-card" data-id="3" data-name="Vuelo a Salta" data-price="200.00">
+            <img src="assets/img/viajes/image copy 2.png" alt="Vuelo a Salta">
+            <div class="flight-info">
+                <div>
+                    <h3>Salta - Ida y Vuelta</h3>
+                    <p>Explora la belleza del Norte argentino, entre cerros y cultura.</p>
+                    <p>Fechas: 10/09/2025 - 17/09/2025. Aerolínea: Andes Líneas Aéreas.</p>
+                </div>
+                <div class="flight-bottom">
+                    <div class="flight-price">$200.00</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flight-card" data-id="4" data-name="Vuelo a Ushuaia" data-price="400.00">
+            <img src="assets/img/viajes/image copy 3.png" alt="Vuelo a Ushuaia">
+            <div class="flight-info">
+                <div>
+                    <h3>Ushuaia - Ida y Vuelta</h3>
+                    <p>Visita el Fin del Mundo: glaciares, parques nacionales y fauna.</p>
+                    <p>Fechas: 01/12/2025 - 08/12/2025. Aerolínea: LADE.</p>
+                </div>
+                <div class="flight-bottom">
+                    <div class="flight-price">$400.00</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flight-card" data-id="5" data-name="Vuelo a Buenos Aires" data-price="150.00">
+            <img src="assets/img/viajes/image copy 4.png" alt="Vuelo a Buenos Aires">
+            <div class="flight-info">
+                <div>
+                    <h3>Buenos Aires - Ida y Vuelta</h3>
+                    <p>Descubre la capital: tango, gastronomía y vida cultural vibrante.</p>
+                    <p>Fechas: 20/10/2025 - 25/10/2025. Aerolínea: Flybondi.</p>
+                </div>
+                <div class="flight-bottom">
+                    <div class="flight-price">$150.00</div>
+                    <button class="add-to-cart-btn">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script>
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            alert(`${nombre} agregado al carrito.`);
+        }
+
+        // Si usás botones con clase .add-to-cart-btn
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.car-card');
+                const nombre = card.getAttribute('data-name');
+                const precio = parseFloat(card.getAttribute('data-price'));
+                agregarAlCarrito(nombre, precio);
+            });
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
